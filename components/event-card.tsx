@@ -42,8 +42,11 @@ const EventCard = ({ event, username, is_public }: EventCardProps) => {
     }
 
     const handleDeleteEvent = async () => {
-        await fnDeleteEvent(event.id);
-        router.refresh();
+        const confirm_delete = window.confirm("Are you sure you want to delete this event?");
+        if (confirm_delete) {
+            await fnDeleteEvent(event.id);
+            router.refresh();
+        }
     }
     return (
         <Card className='flex flex-col justify-between cursor-pointer'>
